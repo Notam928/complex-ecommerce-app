@@ -7,8 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8^^16@&@q1za^zbaw9#5#e+n$@2($$684f$5=dd2*@_e69tnzz'
 
-ALLOWED_HOSTS = []
-
 # Application definition
 
 INSTALLED_APPS = [
