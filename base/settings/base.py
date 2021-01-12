@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     
     "core", 
     "accounts",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,4 @@ AUTH_USER_MODEL = "accounts.User"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
-
-# Simplified static file serving.
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -26,16 +27,14 @@
                             {% csrf_token %}
                             {% if form.errors %}
                                 <div class="alert alert-danger" role="alert">
-                                    <p>Your username and password didn't match. Please try again.</p>
+                                    <p>Your email and password didn't match. Please try again.</p>
                                 </div>
                             {% endif %}
                             <div class="group-input">
-                                <label for="username">{{ form.username.label }} *</label>
-                                {{ form.username }}
+                                {{ form.username|as_crispy_field }}
                             </div>
                             <div class="group-input">
-                                <label for="pass">{{ form.password.label }} *</label>
-                                {{ form.password }}
+                                {{ form.password|as_crispy_field }}
                             </div>
                             <div class="group-input gi-check">
                                 <div class="gi-more">
