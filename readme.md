@@ -1,5 +1,7 @@
 ### Django Complete ecommerce application
 
+### Beware the application is not yet finalized (My apologies for the pages that do not work.
+
 Get project: 
 
    - git clone https://github.com/JulesAD96/complex-ecommerce-app.git
@@ -9,6 +11,7 @@ Get project:
    - python manage.py migrate
    - python manage.py runserver
 
+### Link: https://julesecommerceapp.herokuapp.com/
 
 [![Capture-SDSDS.png](https://i.postimg.cc/RVX3KVP0/Capture-SDSDS.png)](https://postimg.cc/KR3vyFhX)
 
