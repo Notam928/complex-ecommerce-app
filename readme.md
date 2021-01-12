@@ -10,3 +10,9 @@ Get project:
    - python manage.py runserver
 
 
+[![Capture-SDSDS.png](https://i.postimg.cc/RVX3KVP0/Capture-SDSDS.png)](https://postimg.cc/KR3vyFhX)
+
+
+[![Capture.png](https://i.postimg.cc/RVsFqpF6/Capture.png)](https://postimg.cc/kBS9pcWq)
+
+
