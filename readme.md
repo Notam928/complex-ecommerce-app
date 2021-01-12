@@ -11,7 +11,7 @@ Get project:
    - python manage.py migrate
    - python manage.py runserver
 
-Link: `https://julesecommerceapp.herokuapp.com/`
+### Link: https://julesecommerceapp.herokuapp.com/
 
 [![Capture-SDSDS.png](https://i.postimg.cc/RVX3KVP0/Capture-SDSDS.png)](https://postimg.cc/KR3vyFhX)
 
