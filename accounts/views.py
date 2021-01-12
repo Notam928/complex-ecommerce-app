@@ -26,16 +26,14 @@ class UserLoginView(LoginView):
     
 
 
-class UserSignupView(CreateView, LoginView):
+class UserSignupView(CreateView):
     """
     View for creation user account
     """
     template_name ="accounts/signup.html"
     success_url = reverse_lazy("core:index")
     form_class = UserSignupForm     
-    redirect_authenticated_user = True   
-    
-    
+        
     def form_valid(self, form):
         valid = super().form_valid(form)
         login(self.request, self.object)
