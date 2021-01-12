@@ -1,1 +1,1 @@
-from base.settings.dev import *
+from base.settings.prod import *
