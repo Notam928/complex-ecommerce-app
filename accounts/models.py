@@ -8,6 +8,11 @@ from django.contrib.auth.models import (
 class UserManager(BaseUserManager):
     
     def create_user(self, email, first_name, password=None, **extra_fields):
+        """
+        Create user 
+        
+        :return user
+        """
         if not email:
             raise ValueError("User must have an email address")
         
@@ -96,4 +101,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     
     
+class Post(models.Model):
+    pass
     

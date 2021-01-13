@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 
 from accounts.forms import UserLoginForm, UserSignupForm
-
+from accounts.models import Post
 
 class UserLoginView(LoginView):
     
@@ -38,5 +38,16 @@ class UserSignupView(CreateView):
         valid = super().form_valid(form)
         login(self.request, self.object)
         return valid
+  
+    
+
+    
+class PostList(ListView):
+    
+    model = Post
+    template_name = "blog/post_list.html"
+    ordering = ['-created_at']
+    
+    
     
     

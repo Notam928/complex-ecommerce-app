@@ -43,11 +43,16 @@
             </div>
         </div>
         <div class="container">
+            <div class="alert alert-info mt-2 mb-0">
+                This site is still under development, I apologize for the small problems, thank you.
+            </div>
+        </div>
+        <div class="container">
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.html">
+                            <a href="/">
                                 <img src="{% static 'img/logo.png' %}" alt="logo">
                             </a>
                         </div>
@@ -115,7 +120,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$150.00</li>
+                            <li class="cart-price">$0.00</li>
                         </ul>
                     </div>
                 </div>
@@ -140,29 +145,19 @@
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
+                    {% with request.resolver_match.url_name as url_name %}
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
+                        <li class="{% if url_name == 'index' %} active {% endif %}">
+                            <a href="{% url 'core:index' %}">Home  </a>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
+                        <li class="{% if url_name == "shop" %} active {% endif %}">
+                            <a href="{% url 'core:shop' %}">Shop</a>
+                        </li>
+                        <li class="{% if url_name == "blog_index" %} active {% endif %}">
+                            <a href="{% url 'blog:blog_index' %}">Blog</a>
                         </li>
                     </ul>
+                    {% endwith %}
                 </nav>
                 <div id="mobile-menu-wrap"></div>
             </div>

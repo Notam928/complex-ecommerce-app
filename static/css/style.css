@@ -4310,3 +4310,7 @@ ol {
 		padding-right: 15px;
 	}
 }
+
+.category__title > a:hover {
+	color: orange !important;
+}
