@@ -18,13 +18,20 @@
         </div>
     </div>
     <!-- Breadcrumb Section Begin -->
-
+     
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
             <form action="#" class="checkout-form">
                 <div class="row">
-                    <div class="col-lg-6">
+                    {% comment %} <div class="col-lg-6">
                         <div class="checkout-content">
                             <a href="#" class="content-btn">Click Here To Login</a>
                         </div>
@@ -77,19 +84,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="checkout-content">
+                    </div> {% endcomment %}
+                    <div class="col-lg-12">
+                        {% comment %} <div class="checkout-content">
                             <input type="text" placeholder="Enter Your Coupon Code">
-                        </div>
+                        </div> {% endcomment %}
                         <div class="place-order">
                             <h4>Your Order</h4>
                             <div class="order-total">
                                 <ul class="order-table">
                                     <li>Product <span>Total</span></li>
                                     {% for product in object.items.all %}
-                                        <li class="fw-normal">{{ product.item.name }} x {{ product.quantity }} <span>${{ product.item.price }}</span></li>
+                                        <li class="fw-normal">{{ product.item.name }}: ( {{ product.item.price }} x {{ product.quantity }} )
+                                            <span>
+                                                $ {{ product.get_total_item_price }}
+                                            </span>
+                                        </li>
                                     {% endfor %}
+                                        {% if object.coupon %}
+                                            <li class="fw-normal text-info">Coupon <span> - $ {{ object.coupon.amount }}</span></li>
+                                        {% endif %}
+                                    <li class="total-price">Total <span> ${{ object.get_total }}</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">

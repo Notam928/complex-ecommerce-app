@@ -168,7 +168,24 @@ class OderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.item.name}"
     
-
+    def get_total_item_price(self):
+        # the total price of an product with the number of this quantity
+        return self.quantity * self.item.price
+    
+    def get_total_discount_price(self):
+        # the total price of a product with the number of this quantity and discount_price
+        return self.quantity * self.item.discount_price
+    
+    def get_amount_saved(self):
+        #amount  of product (price - discount_priec)
+        return self.get_total_item_price() - self.get_total_discount_price()
+        
+    def get_final_price(self):
+        #the final price of order Item
+        if self.item.discount_price:
+            return self.get_total_discount_price()
+        return self.get_total_item_price
+    
     
 class Order(models.Model):
     """
@@ -215,6 +232,20 @@ class Order(models.Model):
     refund_granted = models.BooleanField(default=False)
     refund_requested = models.BooleanField(default=False)
     
+    def __str__(self):
+        return self.user.first_name
+    
+    def get_total(self):
+        # get the total price in order
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_final_price()
+        # withdraw  coupon if exist
+        if self.coupon:
+            total -= self.coupon.amount
+        
+        return total
+            
     
     
 

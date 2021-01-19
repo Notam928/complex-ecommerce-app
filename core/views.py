@@ -17,10 +17,17 @@ class HomeView(View):
     
     def get(self, *args, **kwargs):
         
-        # query with django ORM
+        cart = None # the user cart 
+        if self.request.user.is_authenticated:
+            try:
+                cart = Order.objects.get(user=self.request.user, ordered=False)
+            except ObjectDoesNotExist:
+                pass
+        
         context = {
             "categories": Category.objects.all(),
             "products": Product.objects.all(),
+            "object": cart 
         }
         
         return render(self.request,"core/index.html", context=context)
@@ -85,9 +92,13 @@ def add_to_cart(request, slug):
         # check if the order item is in the order
         if order.items.filter(item__slug=product.slug).exists():
             #update order item
-            order_item.quantity += 1
+            qauntity = int(request.POST.get("quantity"))
+            
+            order_item.quantity += qauntity
+            order_item.size = request.POST.get("size")
             order_item.save()
             messages.info(request, "This product quantity was updated")
+            
             return redirect("core:order_summary")
         else:
             order.items.add(order_item)

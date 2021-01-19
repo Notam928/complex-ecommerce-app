@@ -44,7 +44,7 @@
         </div>
         <div class="container">
             <div class="alert alert-info mt-2 mb-0">
-                This site is still under development, I apologize for the small problems, thank you.
+               Ce site est encore en cours de développement, je m'excuse pour les petits problèmes. Je continue d'ajouter des fonctionnalités chaque jour, merci.
             </div>
         </div>
         <div class="container">
@@ -77,42 +77,33 @@
                             <li class="cart-icon">
                                 <a href="#">
                                     <i class="icon_bag_alt"></i>
-                                    <span>3</span>
+                                    <span> {% if object %} {{ object.items.count }} {% else %} 0 {% endif %} </span>
                                 </a>
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
                                             <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="{% static 'img/select-product-1.jpg' %}" alt="product"></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="{% static 'img/select-product-2.jpg' %}" alt="product"></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
+                                                {% for product in object.items.all %}
+                                                    <tr>
+                                                        <td class="si-pic">
+                                                        <img width="100" height="80" src="{{ product.item.image.url }} " alt="product"></td>
+                                                        <td class="si-text">
+                                                            <div class="product-selected">
+                                                                <p>${{ product.item.price }} x  {{ product.item.quantity }} </p>
+                                                                <h6>{{ product.item.name }}</h6>
+                                                            </div>
+                                                        </td>
+                                                        <td class="si-close">
+                                                            <i class="ti-close"></i>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        <h5>$ {% if object %} {{ object.get_total }} {% else %} 0.00 {% endif %} </h5>
                                     </div>
                                     <div class="select-button">
                                         <a href="#" class="primary-btn view-card">VIEW CARD</a>
@@ -120,7 +111,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="cart-price">$0.00</li>
+                            <li class="cart-price">$ {% if object %} {{ object.get_total }} {% else %} 0.00 {% endif %}</li>
                         </ul>
                     </div>
                 </div>

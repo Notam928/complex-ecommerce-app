@@ -18,7 +18,6 @@
         </div>
     </div>
     <!-- Breadcrumb Section Begin -->
-
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
         <div class="container">
@@ -65,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="filter-widget">
+                    {% comment %} <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
@@ -82,8 +81,8 @@
                             </div>
                         </div>
                         <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
+                    </div> {% endcomment %}
+                    {% comment %} <div class="filter-widget">
                         <h4 class="fw-title">Color</h4>
                         <div class="fw-color-choose">
                             <div class="cs-item">
@@ -111,8 +110,8 @@
                                 <label class="cs-green" for="cs-green">Green</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="filter-widget">
+                    </div> {% endcomment %}
+                    {% comment %} <div class="filter-widget">
                         <h4 class="fw-title">Size</h4>
                         <div class="fw-size-choose">
                             <div class="sc-item">
@@ -132,8 +131,8 @@
                                 <label for="xs-size">xs</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="filter-widget">
+                    </div> {% endcomment %}
+                    {% comment %} <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
                         <div class="fw-tags">
                             <a href="#">Towel</a>
@@ -144,7 +143,7 @@
                             <a href="#">Men's hats</a>
                             <a href="#">Backpack</a>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
@@ -169,92 +168,79 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="product-details">
-                                <div class="pd-title">
-                                    <span>oranges</span>
-                                    <h3>{{ object.name }}</h3>
-                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
-                                </div>
-                                <div class="pd-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <span>(5)</span>
-                                </div>
-                                <div class="pd-desc">
-                                    <p> {{ object.description }} </p>
-                                    <h4>${{ object.discount_price}} <span>{{ object.price }}</span></h4>
-                                </div>
-                                <div class="pd-color">
-                                    <h6>Color</h6>
-                                    <div class="pd-color-choose">
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-black">
-                                            <label for="cc-black"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-yellow">
-                                            <label for="cc-yellow" class="cc-yellow"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-violet">
-                                            <label for="cc-violet" class="cc-violet"></label>
-                                        </div>
+                            <form method="post" action="{% url 'core:add_to_cart' object.slug %}">
+                                {% csrf_token %}
+                                <div class="product-details">
+                                    <div class="pd-title">
+                                        <span>oranges</span>
+                                        <h3>{{ object.name }}</h3>
+                                        <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                     </div>
-                                </div>
-                                <div class="pd-size-choose">
-                                    <div class="sc-item">
-                                        <input type="radio" id="sm-size">
-                                        <label for="sm-size">s</label>
+                                    <div class="pd-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <span>(5)</span>
                                     </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="md-size">
-                                        <label for="md-size">m</label>
+                                    <div class="pd-desc">
+                                        <p> {{ object.description }} </p>
+                                        <h4>${{ object.discount_price}} <span>{{ object.price }}</span></h4>
                                     </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="lg-size">
-                                        <label for="lg-size">l</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="xl-size">
-                                        <label for="xl-size">xs</label>
-                                    </div>
-                                </div>
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                    <a href="{% url 'core:add_to_cart' object.slug %}" class="primary-btn pd-cart">Add To Cart</a>
-                                </div>
-                                <ul class="pd-tags">
-                                    <li>
-                                        <span>CATEGORIES</span>: 
-                                        {{ object.category.name }}
-                                    </li>
-                                    {% if object.tag %}
-                                    <li>
-                                        <span>TAGS</span>:
-                                        {% for tag in object.tag.all %}
-                                            {{ tag.name }},
-                                        {% endfor %}
-                                    </li>
-                                    {% endif %}
                                     
-                                </ul>
-                                <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
-                                    <div class="pd-social">
-                                        <a href="#"><i class="ti-facebook"></i></a>
-                                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                                        <a href="#"><i class="ti-linkedin"></i></a>
+                                    {% comment %} <div class="pd-size-choose">
+                                        <div class="sc-item">
+                                            <input type="radio" value="s" name="size" id="sm-size">
+                                            <label for="sm-size">s</label>
+                                        </div>
+                                        <div class="sc-item">
+                                            <input type="radio" value="m"  name="size" id="md-size">
+                                            <label for="md-size">m</label>
+                                        </div>
+                                        <div class="sc-item">
+                                            <input type="radio" value="l"  name="size" id="lg-size">
+                                            <label for="lg-size">l</label>
+                                        </div>
+                                        <div class="sc-item">
+                                            <input type="radio" value="xs"  name="size" id="xl-size">
+                                            <label for="xl-size">xs</label>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" name="quantity" required value="1">
+                                        </div>
+                                        <button class="primary-btn pd-cart"> Add to cart </button>
                                     </div>
+                                    <ul class="pd-tags">
+                                        <li>
+                                            <span>CATEGORIES</span>: 
+                                            {{ object.category.name }}
+                                        </li>
+                                        {% if object.tag %}
+                                        <li>
+                                            <span>TAGS</span>:
+                                            {% for tag in object.tag.all %}
+                                                {{ tag.name }},
+                                            {% endfor %}
+                                        </li>
+                                        {% endif %}
+                                        
+                                    </ul>
+                                    {% comment %} <div class="pd-share">
+                                        <div class="p-code">Sku : 00012</div>
+                                        <div class="pd-social">
+                                            <a href="#"><i class="ti-facebook"></i></a>
+                                            <a href="#"><i class="ti-twitter-alt"></i></a>
+                                            <a href="#"><i class="ti-linkedin"></i></a>
+                                        </div>
+                                    </div> {% endcomment %}
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="product-tab">
+                    {% comment %} <div class="product-tab">
                         <div class="tab-item">
                             <ul class="nav" role="tablist">
                                 <li>
@@ -418,14 +404,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>
     </section>
     <!-- Product Shop Section End -->
 
-    <!-- Related Products Section End -->
+    {% comment %} <!-- Related Products Section End -->
     <div class="related-products spad">
         <div class="container">
             <div class="row">
@@ -537,7 +523,7 @@
             </div>
         </div>
     </div>
-    <!-- Related Products Section End -->
+    <!-- Related Products Section End --> {% endcomment %}
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">
